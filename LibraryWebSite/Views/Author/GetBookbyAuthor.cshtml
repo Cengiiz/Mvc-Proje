@@ -1,0 +1,40 @@
+﻿@using LibraryDTO
+@using PagedList;
+@using PagedList.Mvc;
+@using LibraryDAL.Entities
+@model PagedList.IPagedList<BookDTO>
+@{
+    ViewBag.Title = "GetBookbyAuthor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table style="margin-top:30px;" class="table table-bordered">
+    <tr>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Categroy</th>
+        <th>Publish Year</th>
+        <th>Stock Quantity</th>
+        <th>Delete </th>
+        <th>Update</th>
+    </tr>
+    <tbody>
+        
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <th>@book.Identity</th>
+                    <td>@book.Name</td>
+                    <td>@book.AuthorName  @book.AuthorSurname</td>
+                    <td>@book.CategoryName</td>
+                    <td>@(book.PublishYear?.ToString("dd/MM/yyyy"))</td>
+                    <td>@book.StockQuantity</td>
+                    <td><a href="/Book/BookDelete/@book.Identity" class="btn btn-danger">Delete</a> </td>
+                    <td><a href="/Book/GetBook/@book.Identity" class="btn btn-warning">Update</a></td>
+                </tr>
+            }
+    </tbody>
+
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("GetBookbyAuthor", new { sayfa }))
+<a href="/Author/NewAuthor/" class="btn btn-success">New Author</a>

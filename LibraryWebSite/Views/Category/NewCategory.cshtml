@@ -1,0 +1,21 @@
+﻿@model LibraryDTO.CategoryDTO
+@{
+    ViewBag.Title = "NewCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="width:25%;margin-top:100px;">
+    <form method="post">
+
+        <div>
+            <div>
+                <label>New Category Name</label>
+                @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", required = "required" })
+            </div>
+            <div style="margin-top:15px">
+                <button class="btn btn-info" id="alert">Add Category</button>
+            </div>
+        </div>
+    </form>
+</div>
+

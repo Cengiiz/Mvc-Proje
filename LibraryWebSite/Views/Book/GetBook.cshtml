@@ -1,0 +1,37 @@
+﻿@model LibraryDTO.BookDTO
+@using LibraryDTO  
+@{
+    ViewBag.Title = "GetBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Book", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.Identity)
+        <div>
+            <label>Book Name</label>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Austhor </label>
+            @Html.DropDownListFor(m => m.Authorldentity, (List<SelectListItem>)ViewBag.autr, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Category </label>
+            @Html.DropDownListFor(m =>m.CategoryIdentity, (List<SelectListItem>)ViewBag.ctgr, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Publish Year </label>
+            @Html.TextBoxFor(m => m.PublishYear, new { @type = "date", @class = "form-control datepicker" })
+        </div>
+        <div>
+            <label>Stock Quantity </label>
+            @Html.TextBoxFor(m => m.StockQuantity, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <br />
+        <button class="btn btn-warning">Update</button>
+    </div>
+}

@@ -1,0 +1,21 @@
+﻿@model LibraryDTO.AuthorDTO
+@{
+    ViewBag.Title = "GetAuthors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Author", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.AuthorsId)
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Surname)
+        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+    </div>
+    <div>
+        <br />
+        <button class="btn btn-warning">Update</button>
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@using LibraryDTO
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<AuthorDTO>
+@{
+    ViewBag.Title = "Authors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+
+    @using (Html.BeginForm("Author", "Author", FormMethod.Get))
+    {
+        <p style="margin-top:70px;">
+            @Html.TextBox("search")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
+
+<table style="margin-top:30px;" class="table table-bordered">
+    <tr>
+        <th>Authors ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    <tbody>
+        @foreach (var athrs in Model)
+        {
+            <tr>
+                <th>@athrs.AuthorsId</th>
+                <td><a href="/Author/GetBookbyAuthor/@athrs.AuthorsId" style="color:black;">@athrs.Name</a></td>
+                <td>@athrs.Surname</td>
+                <td><a href="/Author/AuthorDelete/@athrs.AuthorsId" class="btn btn-danger">Delete</a> </td>
+                <td><a href="/Author/GetAuthor/@athrs.AuthorsId" class="btn btn-warning">Update</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Author", new { sayfa }))
+<a href="/Author/NewAuthor/" class="btn btn-success">New Author</a>

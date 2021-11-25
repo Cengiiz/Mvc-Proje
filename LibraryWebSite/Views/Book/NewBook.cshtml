@@ -1,0 +1,41 @@
+﻿@model LibraryDTO.BookDTO
+@using LibraryBLL.Concrete
+@{
+    ViewBag.Title = "NewBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="width:25%;margin-top:125px;">
+    <form method="post">
+
+       
+
+        <div>
+            <div>
+                <label>New Book Name</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+            </div>
+            <div>
+                <label>Austhor </label>
+                @Html.DropDownListFor(m => m.Authorldentity, (List<SelectListItem>)ViewBag.autr, new { @class = "form-control", required = "required" })
+            </div>
+            <div>
+                <label>Category </label>
+                @Html.DropDownListFor(m => m.CategoryIdentity, (List<SelectListItem>)ViewBag.ctgr, new { @class = "form-control", required = "required" })
+            </div>
+            <div>
+                <label>Publish Year </label>
+                @Html.TextBoxFor(m => m.PublishYear, new { @type = "date", @class = "form-control datepicker", required = "required" })
+            </div>
+            <div>
+                <label>Stock Quantity </label>
+                @Html.TextBoxFor(m => m.StockQuantity, new { @class = "form-control", required = "required" })
+            </div>
+
+            <div style="margin-top:15px">
+                <button class="btn btn-info" id="alert">Add Authors</button>
+            </div>
+        </div>
+    </form>
+</div>
+
